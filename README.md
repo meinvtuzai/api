@@ -46,6 +46,9 @@ https://atomgit.com/kuby007/up/raw/main/tv/
 壹梦：http://lige.unaux.com/?url=http://qrh.yimkj.cn/ym/%E5%A3%B9%E6%A2%A6.json&i=1
 
 ---------------------------------------------------------------------------------------------
+歌歌tv： https://wds.ecsxs.com/230864.json
+https://gitlink.org.cn/attachments/entries/get_file?download_url=https://www.gitlink.org.cn/api/hailin/tvboxme/raw/lives%2Ffeihu6.txt?ref=master
+https://weixine.net/tv/live.txt
 
 IP6:http://101.200.122.188/66
 
