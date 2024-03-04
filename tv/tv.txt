@@ -631,8 +631,9 @@ TVBS新闻台,P2p://generationnexxxt.com:19806/6a155a5d7bea461b980b4fa559119a60
 民视新闻台,P2p://generationnexxxt.com:19806/d24f18e610d248b7a450d29492b37ebf
 TVBS新闻台,P2p://generationnexxxt.com:19806/9fb651a7ec2e402588a0752ba1035476
 壹新闻台,P2p://generationnexxxt.com:19806/31dad83ef5b74c5db225482cd2e0fbae
+东森财经新闻台,P2p://generationnexxxt.com:19806/6596322e000d4091a2f7138e424b32c5
 年代新闻台,P2p://generationnexxxt.com:19806/95f67e884d88463e907c301d05fa68b7
-三立新闻,P2p://generationnexxxt.com:19806/9388262af2604cc798800736d070d39e
+三立新闻台,P2p://generationnexxxt.com:19806/9388262af2604cc798800736d070d39e
 非凡新闻台,P2p://generationnexxxt.com:19806/02f80f7aad2c480992e06e1bd8a7facb
 镜新闻台,P2p://generationnexxxt.com:19806/668a0abb880a496d8f57fad2f580566b
 寰宇新闻台,P2p://generationnexxxt.com:19806/65b21a80000977cd0ffaa9e72e6218af
@@ -657,4 +658,3 @@ TVBS新闻台,http://ali.hlspull.yximgs.com/live/twlivezozwhzxozhzzzlfhzlzszcnxz
 寰宇新闻台,http://ali.hlspull.yximgs.com/live/twlivephxehmffzuxcxzvezezyhmnzzxzzhzdhnzbnxfdzfhyxw.flv 
 中天新闻台,https://s2.pub/cctv-17
 东森新闻台,https://s2.pub/cctv-18
-东森财经新闻台,P2p://generationnexxxt.com:19806/6596322e000d4091a2f7138e424b32c5
