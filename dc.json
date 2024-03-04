@@ -4,6 +4,10 @@
       "name": "饭太硬",
       "url": "http://饭太硬.top/tv"
     },
+        {
+      "name": "业余PG",
+      "url": "http://yydf.540734621.xyz/yydf/yydf/bd/pg.json"
+    },
     {
       "name": "浪里小白龙",
       "url": "http://39.101.135.137:8080"
@@ -29,30 +33,6 @@
       "url": "http://rihou.vip:88/荷城茶秀"
     },
     {
-      "name": "黄金搭档",
-      "url": "https://gitlab.com/lzc1021lzc/hjfggzs.hjys/-/raw/main/hjysdb.json"
-    },
-    {
-      "name": "PizazzGY",
-      "url": "https://ghps.cc/http://raw.githubusercontent.com/PizazzGY/TVBox/main/api.json"
-    },
-    {
-      "name": "弹幕①",
-      "url": "https://gitee.com/ajin0913/xiaobai/raw/master/DM.json"
-    },
-    {
-      "name": "弹幕②",
-      "url": "https://gitee.com/ajin0913/xiaobai/raw/master/DM1.json"
-    },
-    {
-      "name": "业余PG",
-      "url": "http://yydf.540734621.xyz/yydf/yydf/bd/pg.json"
-    },
-    {
-      "name": "环宇轩",
-      "url": "http://www.891218.xyz/free/jk/hyxuan2.json"
-    },
-    {
       "name": "千软汇",
       "url": "http://qrh.yimkj.cn/qrh/千软汇.json"
     },
@@ -69,28 +49,8 @@
       "url": "https://cf.weixine.net/ysc.json"
     },
     {
-      "name": "影视车",
-      "url": "http://svip.weixine.net:88/uploads/itvbox/svip.json"
-    },
-    {
-      "name": "4K影院",
-      "url": "https://github.moeyy.xyz/raw.githubusercontent.com/lxhfans/TV/master/tv.txt"
-    },
-    {
-      "name": "D佬大",
-      "url": "https://download.kstore.space/download/2883/m3u8/dsj/guochan/mp1/1.m3u8"
-    },
-    {
       "name": "分享者",
       "url": "https://agit.ai/66666/mao/raw/branch/master/00/000.m3u8"
-    },
-    {
-      "name": "八宝周",
-      "url": "http://jin.锦哥哥.love"
-    },
-    {
-      "name": "三条Z",
-      "url": "https://agit.ai/mmmgit/tvbox/raw/branch/main/zzz1.json"
     },
     {
       "name": "动漫城",
@@ -101,18 +61,6 @@
       "url": "http://yydf.540734621.xyz/yydf/yydf/bd/yydf.json"
     },
     {
-      "name": "圆周率",
-      "url": "https://jihulab.com/zhulr7765/tvbox/-/raw/main/tv.txt"
-    },
-    {
-      "name": "OK",
-      "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/okcaptain/okjar/rm/ok.json"
-    },
-    {
-      "name": "小鼠",
-      "url": "http://qrh.yimkj.cn/xs/小鼠.json"
-    },
-    {
       "name": "星辰",
       "url": "http://8.210.232.168/xc.json"
     },
@@ -121,80 +69,12 @@
       "url": "http://xn--5nqxcz3am3cb7e94xzy6aa2935d.xyz/xc.json"
     },
     {
-      "name": "业余",
-      "url": "http://yydf.kele.plus/yydf/api.json"
-    },
-    {
-      "name": "短剧",
-      "url": "https://agit.ai/hu/hcr/raw/branch/master/短剧.json"
-    },
-    {
-      "name": "天微",
-      "url": "https://qixing.myhkw.com/tvys/svip.json"
-    },
-    {
-      "name": "万达",
-      "url": "http://sinopacifichk.com/box/56.txt"
-    },
-    {
-      "name": "火影",
-      "url": "http://jar.lingutv.cn/tvbox/yw/yw.json"
-    },
-    {
-      "name": "宝盒",
-      "url": "https://raw.gitmirror.com/guot55/YGBH/main/ygbox.json"
-    },
-    {
       "name": "南风",
       "url": "https://agit.ai/Yoursmile7/TVBox/raw/branch/master/XC.json"
-    },
-    {
-      "name": "于氏",
-      "url": "https://agit.ai/sejinan/app/raw/branch/box/yu"
-    },
-    {
-      "name": "小米",
-      "url": "http://xhww.fun:63/小米/DEMO.json"
-    },
-    {
-      "name": "冉神",
-      "url": "https://d.kstore.space/download/5242/%E5%86%89%E7%A5%9E.json"
-    },
-    {
-      "name": "南风",
-      "url": "https://agit.ai/Yoursmile7/TVBox/raw/branch/master/XC.json"
-    },
-    {
-      "name": "魔饭",
-      "url": "https://jihulab.com/yw88075/tvbox/-/raw/main/dr/js.json"
     },
     {
       "name": "小马",
       "url": "https://szyyds.cn/tv/x.json"
-    },
-    {
-      "name": "开心",
-      "url": "http://rihou.vip:61/天天开心"
-    },
-    {
-      "name": "飘零",
-      "url": "https://100km.top"
-    },
-    {
-      "name": "影探",
-      "url": "http://www.lyyytv.cn/yt/yt.json"
-    },
-    {
-      "name": "锐星",
-      "url": "https://ruixinga.top/uploads/itvbox/suzhou.img"
-    },
-    {
-      "name": "业余阿里",
-      "url": "http://yydf.540734621.xyz/yydf/yydf/bd/ali.json"
-    },
-    {
-      "name": "阿里玩偶",
-      "url": "http://qrh.yimkj.cn/al/阿里.json"
     },
     {
       "name": "教育专线",
@@ -203,14 +83,6 @@
     {
       "name": "少儿益智",
       "url": "http://qrh.yimkj.cn/se/少儿.json"
-    },
-    {
-      "name": "🍏青苹果砂锅",
-      "url": "https://s2.pub/xpg"
-    },
-    {
-      "name": "🍎小苹果砂锅",
-      "url": "https://la.kstore.space/download/3376/xpg.txt"
     }
   ]
 }
