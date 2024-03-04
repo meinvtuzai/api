@@ -77,6 +77,10 @@ https://api.wmmys.cn/王某某影视/zb.txt
 https://pastebin.com/raw/tuXBQs7U
 
 闭月羞花：http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221225804/index.m3u8
+全球直播：https://gitcode.net/shi800/dd/-/raw/master/e.txt
+
+新全球直播：http://jiami.guimei.work/a/1707292648.txt
+
 
 壹梦：http://lige.unaux.com/?url=http://qrh.yimkj.cn/%E7%9B%B4%E6%92%AD%E6%BA%90.php
 
