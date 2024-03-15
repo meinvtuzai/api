@@ -5,6 +5,8 @@
 
 [市场下载：https://hfr1107.github.io/up/appmarket/应用市场.apk ]&&&&&&&[下  载](https://hfr1107.github.io/up/appmarket/应用市场.apk) &&&&&&&[编   辑](https://github.com/hfr1107/up/edit/main/appmarket/)]
 
+[市场app：https://hfr1107.github.io/up/store/update_qwt.json ]&&&&&&&[打  开](https://hfr1107.github.io/up/store/update_qwt.json) &&&&&&&[编   辑](https://github.com/hfr1107/up/edit/main/store/update_qwt.json)]
+
 https://atomgit.com/kuby007/up/raw/main/appmarket/ads.json
 
 https://atomgit.com/kuby007/up/raw/main/appmarket/index.json
