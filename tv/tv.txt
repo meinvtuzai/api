@@ -101,4 +101,6 @@ CCTV-第一剧场,https://epg.pw/stream/ba55b8e8aea7622044ad6925d44966b26283edbe
 西藏卫视,https://epg.pw/stream/4dd021e99ed38670cdabe97b5fe319fd534b714110613abffccfb998084a98e4.ctv
 
 港台频道,#genre#
-凤凰卫视,http://playtv-live.ifeng.com/live/06OLEGEGM4G.m3u8
+凤凰卫视,http://playtv-live.ifeng.com/live/06OLEGEGM4G.m3u8#http://fzcds.cn:8822/hls/81/index.m3u8#http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226547/index.m3u8
+中天新闻,https://s2.pub/cctv-17
+东森新闻台,https://s2.pub/cctv-18
