@@ -1,7 +1,7 @@
 {
-    "spider": "18.jar",
+    "spider": "./18.jar",
     "sites": [
-        {"key":"ss直播","name":"🔞ss直播","type":3,"api":"drpy2.min.js","searchable":1,"quickSearch":1,"filterable":1,"ext":"ss直播.js"},
+        {"key":"ss直播","name":"🔞ss直播","type":3,"api":"./drpy2.min.js","searchable":1,"quickSearch":1,"filterable":1,"ext":"./ss直播.js"},
         {
             "key": "91md.me",
             "name": "成人18+",
