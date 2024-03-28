@@ -1,15 +1,15 @@
 {
-  "spider": "./jar/18.jar",
+  "spider": "https://hfr1107.github.io/aip/box/jar/18.jar",
   "sites": [
     {
       "key": "ss直播",
       "name": "🔞ss直播",
       "type": 3,
-      "api": "./js/drpy2.min.js",
+      "api": ".https://hfr1107.github.io/aip/box/js/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "./js/ss直播.js"
+      "ext": "https://hfr1107.github.io/aip/box/js/ss直播.js"
     },
     {
       "key": "91md.me",
