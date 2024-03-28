@@ -1,8 +1,16 @@
-//https://hfr1107.github.io/aip/box/1668.json
+//https://hfr1107.github.io/api/box/1668.json
 
 {
   "spider": "https://hfr1107.github.io/api/box/jar/18.jar",
   "sites": [
+        {
+      "key": "泥巴",
+      "name": "泥巴",
+      "type": 3,
+      "api": "csp_NiNi",
+      "searchable": 1,
+      "ext": "1"
+    },
     {
       "key": "ss直播",
       "name": "🔞ss直播",
@@ -20,14 +28,6 @@
       "api": "http://91md.me/api.php/provide/vod/",
       "searchable": 1,
       "changeable": 1
-    },
-    {
-      "key": "泥巴",
-      "name": "泥巴",
-      "type": 3,
-      "api": "csp_NiNi",
-      "searchable": 1,
-      "ext": "1"
     },
     {
       "key": "量子",
