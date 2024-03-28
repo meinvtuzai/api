@@ -1,15 +1,36 @@
 {
   "spider": "https://hfr1107.github.io/api/box/jar/18.jar",
   "sites": [
-        {
-      "key": "泥巴",
-      "name": "泥巴",
-      "type": 3,
-      "api": "csp_NiNi",
-      "searchable": 1,
-      "ext": "1"
-    },
     {
+      "key": "Pandalivetv",
+      "name": "💯韩国┃美女┃直播",
+      "type": 3,
+      "api": "csp_Pandalivetv",
+      "searchable": 0,
+      "changeable": 0
+    },{
+      "key": "Fangniu4k",
+      "name": "🇨🇳放牛┃TV┃App",
+      "type": 3,
+      "api": "csp_Fangniu4k",
+      "searchable": 1,
+      "changeable": 0
+    },{
+      "key": "Yinyuetai",
+      "name": "🛰音悦台┃音乐┃MV",
+      "type": 3,
+      "api": "csp_Yinyuetai",
+      "searchable": 1,
+      "changeable": 0
+    },{
+      "key": "Iktv",
+      "name": "🛰KTV┃音乐┃MV",
+      "type": 3,
+      "api": "csp_Iktv",
+      "searchable": 1,
+      "changeable": 0
+    },
+        {
       "key": "ss直播",
       "name": "🔞ss直播",
       "type": 3,
@@ -26,71 +47,8 @@
       "api": "http://91md.me/api.php/provide/vod/",
       "searchable": 1,
       "changeable": 1
-    },
-    {
-      "key": "量子",
-      "name": "量子",
-      "type": 0,
-      "api": "https://cj.lziapi.com/api.php/provide/vod/at/xml/",
-      "searchable": 1,
-      "changeable": 1,
-      "categories": [
-        "伦理片"
-      ]
-    },
-    {
-      "key": "非凡",
-      "name": "非凡",
-      "type": 0,
-      "api": "http://cj.ffzyapi.com/api.php/provide/vod/at/xml/",
-      "searchable": 1,
-      "changeable": 1,
-      "categories": [
-        "伦理片"
-      ]
-    },
-    {
-      "key": "玩偶",
-      "name": "玩偶",
-      "type": 3,
-      "api": "csp_Doll",
-      "searchable": 1
-    },
-    {
-      "key": "18AV",
-      "name": "18AV",
-      "type": 3,
-      "api": "csp_Eighteen",
-      "searchable": 1
-    },
-    {
-      "key": "Jable",
-      "name": "Jable",
-      "type": 3,
-      "api": "csp_Jable",
-      "searchable": 1
-    },
-    {
-      "key": "MissAV",
-      "name": "MissAV",
-      "type": 3,
-      "api": "csp_Miss",
-      "searchable": 1
-    },
-    {
-      "key": "Supjav",
-      "name": "Supjav",
-      "type": 3,
-      "api": "csp_Supjav",
-      "searchable": 1
-    },
-    {
-      "key": "Hanime",
-      "name": "Hanime",
-      "type": 3,
-      "api": "csp_Hanime",
-      "searchable": 1
     }
+    
   ],
   "doh": [
     {
