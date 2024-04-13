@@ -1,10 +1,1 @@
-{
-"id":"1",
-"wenads":"路尧应用仓库，仅供家庭内部使用，切勿外传！",
-"imads1":"https://hfr1107.github.io/up/appmarket/app_icon.png",
-"imads2":"https://hfr1107.github.io/up/appmarket/app_bg.png",
-"imads3":"切勿外传",
-"imads4":"",
-"imads5":"",
-"viads":"路尧应用仓库，仅供家庭内部使用"
-}
+{"id":"1","wenads":"路尧定制应用仓库，仅供家庭内部使用，切勿外传！","imads1":"https://raw.githubusercontent.com/hfr1107/app/main/appmarket/app_icon.png","imads2":"https://raw.githubusercontent.com/hfr1107/app/main/appmarket/app_bg.png","imads3":"切勿外传","imads4":"","imads5":"","viads":"路尧定制"}
