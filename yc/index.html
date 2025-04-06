@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>应用市场</title>
+    <style>
+      .focused {
+            outline: 2px solid blue;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-4">应用市场</h1>
+        <div class="flex justify-center space-x-4 mb-6">
+            <input type="text" id="search-code" class="border border-gray-300 rounded-md px-4 py-2" placeholder="输入 code">
+            <button id="search-button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="searchData()">搜索</button>
+        </div>
+        <div class="flex justify-center space-x-4 mb-6" id="category-buttons">
+            <!-- 分类按钮将通过 AJAX 动态插入 -->
+        </div>
+        <div id="software-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-6">
+            <!-- 软件项将通过 AJAX 动态插入 -->
+        </div>
+        <div class="flex justify-center space-x-4">
+            <button id="prev-page" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="prevPage()" disabled>上一页</button>
+            <button id="next-page" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="nextPage()">下一页</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        let currentCategory = 'all';
+        let focusedIndex = 0;
+        let code = '11aa';
+
+        function fetchData() {
+            const xhr = new XMLHttpRequest();
+            const url = `software_list.php?code=${code}&page=${currentPage}&category=${currentCategory}`;
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        console.error(response.error);
+                        return;
+                    }
+                    document.getElementById('category-buttons').innerHTML = response.categoryButtonsHtml;
+                    document.getElementById('software-grid').innerHTML = response.softwareHtml;
+                    currentPage = response.currentPage;
+                    const prevButton = document.getElementById('prev-page');
+                    const nextButton = document.getElementById('next-page');
+                    prevButton.disabled = currentPage === 1;
+                    nextButton.disabled = response.endIndex >= response.totalItems;
+                    setFocus();
+                }
+            };
+            xhr.send();
+        }
+
+        function searchData() {
+            const inputCode = document.getElementById('search-code').value;
+            if (inputCode) {
+                code = inputCode;
+                currentPage = 1;
+                currentCategory = 'all';
+                fetchData();
+            }
+        }
+
+        function filterSoftware(category) {
+            currentCategory = category;
+            currentPage = 1;
+            fetchData();
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                fetchData();
+            }
+        }
+
+        function nextPage() {
+            const xhr = new XMLHttpRequest();
+            const url = `https://hfr1107.top/api/box/software_list.php?code=${code}&page=${currentPage + 1}&category=${currentCategory}`;
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.endIndex < response.totalItems) {
+                        currentPage++;
+                        document.getElementById('category-buttons').innerHTML = response.categoryButtonsHtml;
+                        document.getElementById('software-grid').innerHTML = response.softwareHtml;
+                        const prevButton = document.getElementById('prev-page');
+                        const nextButton = document.getElementById('next-page');
+                        prevButton.disabled = currentPage === 1;
+                        nextButton.disabled = response.endIndex >= response.totalItems;
+                        setFocus();
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function setFocus() {
+            const softwareItems = document.querySelectorAll('.software-item');
+            softwareItems.forEach((item, index) => {
+                item.classList.remove('focused');
+                if (index === focusedIndex) {
+                    item.classList.add('focused');
+                }
+            });
+        }
+
+        function handleKeyDown(event) {
+            const softwareItems = document.querySelectorAll('.software-item');
+            const totalItems = softwareItems.length;
+            const cols = 6;
+
+            switch (event.key) {
+                case 'ArrowLeft':
+                    if (focusedIndex % cols > 0) {
+                        focusedIndex--;
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (focusedIndex % cols < cols - 1 && focusedIndex < totalItems - 1) {
+                        focusedIndex++;
+                    }
+                    break;
+                case 'Enter':
+                    const downloadLink = softwareItems[focusedIndex].querySelector('a');
+                    if (downloadLink) {
+                        downloadLink.click();
+                    }
+                    break;
+            }
+
+            setFocus();
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+        fetchData();
+    </script>
+</body>
+
+</html>    
