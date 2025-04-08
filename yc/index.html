@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -11,15 +10,15 @@
         /* 自定义样式 */
        .grid-item {
             min-width: clamp(120px, 15vw, 160px);
-            /* 设置宫格高宽比为 1:0.618 */
-            min-height: calc(clamp(120px, 15vw, 160px) / 0.618);
+            /* 使用 clamp 函数实现响应式最小宽度 */
+            min-height: clamp(120px, 15vw, 160px);
+            /* 使用 clamp 函数实现响应式最小高度 */
+            aspect-ratio: 1 / 1;
+            /* 确保为正方形 */
             width: 100%;
+            /* 让宽度自适应父容器 */
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
+            /* 确保内边距和边框不影响尺寸 */
         }
 
        .truncate-2 {
@@ -45,136 +44,59 @@
         /* 标签栏样式调整 */
         #category-buttons button {
             font-size: 1.25rem;
+            /* 加大两号 */
             font-weight: bold;
+            /* 加粗 */
             padding: 0.75rem 1.5rem;
+            /* 同比例放大按钮 */
         }
 
         /* 版本号样式调整 */
        .grid-item p.text-xs {
-            line-height: 1.2;
+            line-height: 0.2;
+            /* 缩小行间距 */
             font-weight: bold;
+            /* 文字加粗 */
         }
 
-        /* 隐藏滚动条 */
-        #software-container {
-            overflow-y: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        #software-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* 宫格内图片样式 */
-       .grid-item img {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-            /* 保持图片为正方形 */
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-        }
-
-        /* 宫格内文字样式，文字宽高与宫格宽度为固定比例 */
-       .grid-item h3 {
-            font-size: calc(0.1 * min-width);
-            margin-top: 0.5px;
-            /* 文字与图片间隙尽可能接近 0 */
-            width: 100%;
-            text-align: center;
-        }
-
-       .grid-item p.text-sm {
-            font-size: calc(0.08 * min-width);
-            width: 100%;
-            text-align: center;
-            margin-top: 1px;
-            /* 文字间的间距比最顶上的文字与图片的间隙稍微大一点 */
-        }
-
-       .grid-item p.text-xs {
-            font-size: calc(0.06 * min-width);
-            width: 100%;
-            text-align: center;
-            margin-top: 1px;
-            /* 文字间的间距比最顶上的文字与图片的间隙稍微大一点 */
-        }
-
-        /* 不同屏幕尺寸下的宫格列数调整 */
-        @media (min-width: 1920px) {
-            #software-grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
-        }
-
-        @media (min-width: 2560px) {
-            #software-grid {
-                grid-template-columns: repeat(10, 1fr);
-            }
-        }
-
-        /* 下拉菜单样式 */
-       .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-       .dropdown-content {
-            display: none;
+        /* 下拉列表样式 */
+        #search-dropdown {
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+            top: calc(100% + 2px);
+            left: 0;
+            width: calc(100% - 4px);
+            /* 考虑边框，保证与文本框同宽 */
+            overflow-y: auto;
+            background-color: #fff;
+            /* 与文本框同底色 */
+            border: 1px solid #ccc;
+            z-index: 10;
+            box-shadow: 0 4px 6 - 1px rgba(0, 0, 0, 0.1), 0 2px 4 - 1px rgba(0, 0, 0, 0.06);
         }
 
-       .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
+        #search-dropdown div {
+            padding: 8px 12px;
+            cursor: pointer;
         }
 
-       .dropdown-content a:hover {
-            background-color: #f1f1f1
+        #search-dropdown div:hover {
+            background-color: #f0f0f0;
         }
 
-       .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-       .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+        #search-dropdown div:focus {
+            background-color: #e0e0e0;
         }
     </style>
 </head>
 
-<body class=" bg-white">
+<body class="bg-gray-100">
     <div class="container mx-auto p-4">
         <!-- 搜索栏 -->
-        <div id="search-container" class="mb-6 grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-2 items-center">
-            <div class="dropdown">
-                <button class="whitespace-nowrap px-6 py-3 bg-gray-500 text-white rounded-lg text-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-300 dropbtn"
-                    tabindex="0">
-                    选择预置口令
-                </button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="selectCode('11AA')">11AA</a>
-                    <a href="#" onclick="selectCode('5DF5')">5DF5</a>
-                    <a href="#" onclick="selectCode('8980')">8980</a>
-                    <a href="#" onclick="selectCode('2004')">2004</a>
-                    <a href="#" onclick="selectCode('DA4F')">DA4F</a>
-                    <a href="#" onclick="selectCode('D381')">D381</a>
-                    <a href="#" onclick="selectCode('AAD9')">AAD9</a>
-                    <a href="#" onclick="selectCode('E9D1')">E9D1</a>
-                    <a href="#" onclick="selectCode('BB1D')">BB1D</a>
-                </div>
-            </div>
+        <div id="search-container" class="mb-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 items-center relative">
             <input type="text" id="search-code"
                 class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-lg transition-all"
                 placeholder="输入野草口令（如11AA、5DF5、8980、2004、DA4F，D381、AAD9、E9D1、BB1D)" tabindex="0">
-
+            <div id="search-dropdown"></div>
             <div class="flex gap-2">
                 <button id="search-btn"
                     class="whitespace-nowrap px-6 py-3 bg-blue-600 text-white rounded-lg text-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-300"
@@ -193,7 +115,7 @@
         <div class="flex flex-wrap gap-2 mb-4" id="category-buttons"></div>
 
         <!-- 软件宫格 -->
-        <div id="software-container" class="overflow-auto h-[70vh]">
+        <div id="software-container" class="overflow-visible h-[70vh]">
             <div id="software-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
         </div>
     </div>
@@ -204,17 +126,26 @@
         let currentCode = '';
         let focusableElements = [];
         let currentFocusIndex = 0;
+        const menuData = [
+            { "code": "11AA", "name": "🏄️口令1┃11AA" },
+            { "code": "5DF5", "name": "🏄️口令2┃5DF5" },
+            { "code": "8980", "name": "🏄️口令3┃8980" },
+            { "code": "2004", "name": "🏄️口令4┃2004" },
+            { "code": "DA4F", "name": "🏄️口令5┃DA4F" },
+            { "code": "D381", "name": "🏄️口令6┃D381" },
+            { "code": "AAD9", "name": "🏄️口令7┃AAD9" },
+            { "code": "E9D1", "name": "🏄️口令8┃E9D1" },
+            { "code": "BB1D", "name": "🏄️口令9┃BB1D" }
+        ];
+        let dropdownIndex = -1;
 
         // 初始化
         window.addEventListener('DOMContentLoaded', () => {
             fetchData(currentCode);
             initKeyboardNav();
+            initSearchDropdown();
             setTimeout(() => {
-                const firstGridItem = document.querySelector('.grid-item');
-                if (firstGridItem) {
-                    firstGridItem.focus();
-                    firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
+                focusOnAllCategory();
             }, 50);
         });
 
@@ -231,20 +162,24 @@
 
                 softwareData = data.groupApkList || [];
                 initCategories(data.tagNameList || []);
-                // 搜索完成后默认显示全部标签数据
                 currentCategory = 'all';
                 renderSoftware();
 
                 setTimeout(() => {
-                    const firstGridItem = document.querySelector('.grid-item');
-                    if (firstGridItem) {
-                        firstGridItem.focus();
-                        firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    if (softwareData.length === 0) {
+                        focusOnAllCategory();
+                    } else {
+                        const firstGridItem = document.querySelector('.grid-item');
+                        if (firstGridItem) {
+                            firstGridItem.focus();
+                            firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
                     }
                 }, 50);
             } catch (error) {
                 console.error('Fetch error:', error);
                 showError(error.message);
+                focusOnAllCategory();
             }
         }
 
@@ -295,28 +230,21 @@
                 const card = document.createElement('div');
                 card.className = 'grid-item bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-500';
                 card.tabIndex = 0;
-                card.dataset.packageName = item.meta.packageName;
-                card.dataset.downloadUrl = item.pluginUrl;
+                const packageName = item.meta.packageName || '包名不详';
+                const packageVersion = item.meta?.versionName ? `V${item.meta.versionName}` : '版本不详';
+                const packageSize = item.apkLength ? `[${(item.apkLength / 1024).toFixed(1)}M]` : '大小不详';
+                const createTime = item.tagList.length > 0 ? `[${item.tagList[0].createTime.split(' ')[0]}]` : '';
                 card.onclick = () => window.open(item.pluginUrl, '_blank');
-                card.onkeydown = function (e) {
-                    if (e.key === 'Enter') {
-                        window.open(item.pluginUrl, '_blank');
-                    }
-                };
-                // 假设数据中有 updateDate 字段，如果没有需要根据实际情况修改
-                const packageName = item.meta.packageName || '未知';
-                const createTime = item.tagList.length > 0? item.tagList[0].createTime.split(' ')[0] : '未知';
                 card.innerHTML = `
-                    <div class="h-full flex flex-col">
-                        <img src="${item.meta.iconUrl}" 
-                             class="mx-auto mb-2 object-contain">
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-center truncate-2">${item.meta.label}</h3>
-                            <p class="text-sm text-gray-500 text-center truncate mt-1" id="package-name-${item.meta.packageName}" style="display: none;">${item.meta.packageName}</p>
-                            <p class="text-xs text-gray-400 text-center mt-2">v${item.meta.versionName}</p>
-                            <p class="text-xs text-gray-400 text-center mt-2">${packageName}</p>
-                            <p class="text-xs text-gray-400 text-center mt-2">${createTime}</p>
-                        </div>
+    <div class="h-full flex flex-col">
+        <img src="${item.meta.iconUrl}" 
+             class="w-20 h-20 mx-auto mb-2 object-contain">
+        <div class="flex-1">
+            <h3 class="font-semibold text-center truncate-2">${item.meta.label}</h3>
+            <p class="text-xs text-gray-400 text-center mt-2">${packageVersion}</p>
+            <p class="text-xs text-gray-400 text-center mt-2">${packageName}</p>
+            <p class="text-xs text-gray-400 text-center mt-2">${createTime}${packageSize}</p>
+        </div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -334,36 +262,40 @@
                 const isClearBtn = active.id === 'clear-btn';
                 const isCategoryBtn = active.parentElement?.id === 'category-buttons';
                 const isGridItem = active.classList.contains('grid-item');
-                const isDropdownBtn = active.classList.contains('dropbtn');
+                const isDropdownOption = active.classList.contains('dropdown-option');
 
+                // 阻止默认滚动行为
                 if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
                     e.preventDefault();
                 }
 
+                // 处理不同元素的导航逻辑
                 if (isSearchInput) handleSearchNav(e);
                 else if (isSearchBtn) handleSearchBtnNav(e);
                 else if (isClearBtn) handleClearBtnNav(e);
                 else if (isCategoryBtn) handleCategoryNav(e, active);
                 else if (isGridItem) handleGridNav(e, active);
-                else if (isDropdownBtn) handleDropdownNav(e, active);
+                else if (isDropdownOption) handleDropdownNav(e, active);
 
                 if (e.key === 'Escape') {
-                    const firstGridItem = document.querySelector('.grid-item');
-                    if (firstGridItem) {
-                        firstGridItem.focus();
-                        firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
+                    focusOnAllCategory();
                 }
             });
         }
 
         function handleSearchNav(e) {
+            const dropdown = document.getElementById('search-dropdown');
             switch (e.key) {
                 case 'ArrowDown':
-                    focusFirstCategory();
-                    break;
-                case 'ArrowLeft':
-                    document.querySelector('.dropbtn').focus();
+                    if (dropdown.style.display === 'none') {
+                        showSearchDropdown();
+                    } else {
+                        const options = dropdown.querySelectorAll('.dropdown-option');
+                        if (options.length > 0) {
+                            dropdownIndex = 0;
+                            options[dropdownIndex].focus();
+                        }
+                    }
                     break;
                 case 'ArrowRight':
                     document.getElementById('search-btn').focus();
@@ -383,7 +315,7 @@
                     document.getElementById('clear-btn').focus();
                     break;
                 case 'ArrowDown':
-                    focusFirstCategory();
+                    focusOnAllCategory();
                     break;
             }
         }
@@ -397,7 +329,7 @@
                     document.getElementById('search-btn').focus();
                     break;
                 case 'ArrowDown':
-                    focusFirstCategory();
+                    focusOnAllCategory();
                     break;
             }
         }
@@ -430,16 +362,9 @@
             const index = items.indexOf(active);
             const cols = getComputedGridColumns();
 
-            const packageNameElement = active.querySelector('p[id^="package-name-"]');
-            if (e.type === 'focus') {
-                packageNameElement.style.display = 'block';
-            } else if (e.type === 'blur') {
-                packageNameElement.style.display = 'none';
-            }
-
             switch (e.key) {
                 case 'ArrowUp':
-                    if (index < cols) focusFirstCategory();
+                    if (index < cols) focusOnAllCategory();
                     else items[index - cols].focus();
                     break;
                 case 'ArrowDown':
@@ -458,45 +383,60 @@
         }
 
         function handleDropdownNav(e, active) {
+            const options = document.querySelectorAll('.dropdown-option');
             switch (e.key) {
-                case 'ArrowDown':
-                    const firstDropdownItem = document.querySelector('.dropdown-content a');
-                    if (firstDropdownItem) firstDropdownItem.focus();
+                case 'ArrowUp':
+                    if (dropdownIndex > 0) {
+                        dropdownIndex--;
+                        options[dropdownIndex].focus();
+                    }
                     break;
-                case 'ArrowRight':
-                    document.getElementById('search-code').focus();
+                case 'ArrowDown':
+                    if (dropdownIndex < options.length - 1) {
+                        dropdownIndex++;
+                        options[dropdownIndex].focus();
+                    }
+                    break;
+                case 'Enter':
+                    selectDropdownOption(active);
                     break;
             }
         }
 
+        // 辅助函数
         function getComputedGridColumns() {
             const grid = document.getElementById('software-grid');
             return parseInt(getComputedStyle(grid).gridTemplateColumns.split(' ').length);
         }
 
-        function focusFirstCategory() {
-            const btn = document.querySelector('#category-buttons button');
-            if (btn) btn.focus();
+        function focusOnAllCategory() {
+            const allButton = document.querySelector('#category-buttons button[data-active="true"]');
+            if (allButton) {
+                allButton.focus();
+                allButton.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         }
 
         function updateFocusables() {
-            focusableElements = Array.from(document.querySelectorAll('button, input, .grid-item, .dropdown-content a'));
+            focusableElements = Array.from(document.querySelectorAll('button, input, .grid-item, .dropdown-option'));
         }
 
         // 搜索功能
         function handleSearch() {
             const code = document.getElementById('search-code').value.replace(/[^a-zA-Z0-9]/g, '');
-            if (code && code!== currentCode) {
+            if (code && code !== currentCode) {
                 currentCode = code;
                 fetchData(currentCode);
             }
             document.getElementById('search-code').value = '';
+            hideSearchDropdown();
         }
 
         function clearSearch() {
             document.getElementById('search-code').value = '';
             currentCode = '';
             fetchData(currentCode);
+            hideSearchDropdown();
         }
 
         function showError(msg) {
@@ -507,9 +447,60 @@
             `;
         }
 
-        function selectCode(code) {
-            document.getElementById('search-code').value = code;
-            handleSearch();
+        // 搜索下拉列表功能
+        function initSearchDropdown() {
+            const input = document.getElementById('search-code');
+            input.addEventListener('focus', showSearchDropdown);
+            input.addEventListener('blur', function (e) {
+                // 延迟隐藏，避免点击选项时直接隐藏
+                setTimeout(() => {
+                    if (!document.getElementById('search-dropdown').contains(e.relatedTarget)) {
+                        hideSearchDropdown();
+                    }
+                }, 100);
+            });
+        }
+
+        function showSearchDropdown() {
+            const dropdown = document.getElementById('search-dropdown');
+            dropdown.innerHTML = '';
+            menuData.forEach(option => {
+                const div = document.createElement('div');
+                div.textContent = option.name;
+                div.className = 'dropdown-option';
+                div.tabIndex = 0;
+                div.dataset.code = option.code;
+                div.onclick = (e) => selectDropdownOption(e.target);
+                div.onkeydown = (e) => {
+                    if (e.key === 'Enter') {
+                        selectDropdownOption(e.target);
+                    }
+                };
+                dropdown.appendChild(div);
+            });
+
+            // 根据 code 个数动态设置 max-height
+            const itemHeight = 40; // 每个选项的大致高度，已调整为 40px
+            const maxHeight = menuData.length * itemHeight;
+            dropdown.style.maxHeight = `${maxHeight}px`;
+
+            dropdown.style.display = 'block';
+        }
+
+        function hideSearchDropdown() {
+            const dropdown = document.getElementById('search-dropdown');
+            dropdown.style.display = 'none';
+            dropdownIndex = -1;
+        }
+
+        function selectDropdownOption(div) {
+            const input = document.getElementById('search-code');
+            const code = div.dataset.code;
+            input.value = code;
+            currentCode = code;
+            fetchData(currentCode);
+            hideSearchDropdown();
+            input.value = '';
         }
     </script>
 </body>
