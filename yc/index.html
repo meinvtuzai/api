@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,29 @@
     <style>
         /* 自定义样式 */
        .grid-item {
-            min-width: clamp(120px, 15vw, 160px); /* 使用 clamp 函数实现响应式最小宽度 */
-            min-height: clamp(120px, 15vw, 160px); /* 使用 clamp 函数实现响应式最小高度 */
-            aspect-ratio: 1 / 1; /* 确保为正方形 */
-            width: 100%; /* 让宽度自适应父容器 */
-            box-sizing: border-box; /* 确保内边距和边框不影响尺寸 */
+            min-width: clamp(120px, 15vw, 160px);
+            /* 设置宫格高宽比为 1:0.618 */
+            min-height: calc(clamp(120px, 15vw, 160px) / 0.618);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
         }
+
        .truncate-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         #search-container {
             scroll-margin-top: 2rem;
         }
+
         /* 进一步优化焦点样式 */
         button:focus,
         input:focus,
@@ -31,49 +40,156 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
             outline: none;
         }
+
         /* 标签栏样式调整 */
         #category-buttons button {
-            font-size: 1.25rem; /* 加大两号 */
-            font-weight: bold; /* 加粗 */
-            padding: 0.75rem 1.5rem; /* 同比例放大按钮 */
+            font-size: 1.25rem;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
         }
+
         /* 版本号样式调整 */
        .grid-item p.text-xs {
-            line-height: 1.2; /* 缩小行间距 */
-            font-weight: bold; /* 文字加粗 */
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        /* 隐藏滚动条 */
+        #software-container {
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #software-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 宫格内图片样式 */
+       .grid-item img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            /* 保持图片为正方形 */
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+        }
+
+        /* 宫格内文字样式，文字宽高与宫格宽度为固定比例 */
+       .grid-item h3 {
+            font-size: calc(0.1 * min-width);
+            margin-top: 0.5px;
+            /* 文字与图片间隙尽可能接近 0 */
+            width: 100%;
+            text-align: center;
+        }
+
+       .grid-item p.text-sm {
+            font-size: calc(0.08 * min-width);
+            width: 100%;
+            text-align: center;
+            margin-top: 1px;
+            /* 文字间的间距比最顶上的文字与图片的间隙稍微大一点 */
+        }
+
+       .grid-item p.text-xs {
+            font-size: calc(0.06 * min-width);
+            width: 100%;
+            text-align: center;
+            margin-top: 1px;
+            /* 文字间的间距比最顶上的文字与图片的间隙稍微大一点 */
+        }
+
+        /* 不同屏幕尺寸下的宫格列数调整 */
+        @media (min-width: 1920px) {
+            #software-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        @media (min-width: 2560px) {
+            #software-grid {
+                grid-template-columns: repeat(10, 1fr);
+            }
+        }
+
+        /* 下拉菜单样式 */
+       .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+       .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+       .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+       .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+       .dropdown:hover. dropdown-content {
+            display: block;
+        }
+
+       .dropdown:hover. dropbtn {
+            background-color: #3e8e41;
         }
     </style>
 </head>
-<body class="bg-gray-100">
+
+<body class=" bg-white">
     <div class="container mx-auto p-4">
         <!-- 搜索栏 -->
-        <div id="search-container" class="mb-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 items-center">
-            <input type="text" 
-                   id="search-code"
-                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-lg transition-all"
-                   placeholder="输入野草口令（如11AA、5DF5、8980、2004、DA4F，D381、AAD9、E9D1、BB1D)"
-                   tabindex="0">
-            
+        <div id="search-container" class="mb-6 grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-2 items-center">
+            <div class="dropdown">
+                <button class="whitespace-nowrap px-6 py-3 bg-gray-500 text-white rounded-lg text-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-300 dropbtn"
+                    tabindex="0">
+                    选择口令
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="selectCode('11AA')">11AA</a>
+                    <a href="#" onclick="selectCode('5DF5')">5DF5</a>
+                    <a href="#" onclick="selectCode('8980')">8980</a>
+                    <a href="#" onclick="selectCode('2004')">2004</a>
+                    <a href="#" onclick="selectCode('DA4F')">DA4F</a>
+                    <a href="#" onclick="selectCode('D381')">D381</a>
+                    <a href="#" onclick="selectCode('AAD9')">AAD9</a>
+                    <a href="#" onclick="selectCode('E9D1')">E9D1</a>
+                    <a href="#" onclick="selectCode('BB1D')">BB1D</a>
+                </div>
+            </div>
+            <input type="text" id="search-code"
+                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-lg transition-all"
+                placeholder="输入野草口令（如11AA、5DF5、8980、2004、DA4F，D381、AAD9、E9D1、BB1D)" tabindex="0">
+
             <div class="flex gap-2">
-                <button id="search-btn" 
-                        class="whitespace-nowrap px-6 py-3 bg-blue-600 text-white rounded-lg text-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-300"
-                        onclick="handleSearch()"
-                        tabindex="0">
+                <button id="search-btn"
+                    class="whitespace-nowrap px-6 py-3 bg-blue-600 text-white rounded-lg text-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-300"
+                    onclick="handleSearch()" tabindex="0">
                     立即搜索
                 </button>
-                <button id="clear-btn" 
-                        class="whitespace-nowrap px-6 py-3 bg-gray-500 text-white rounded-lg text-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-300"
-                        onclick="clearSearch()"
-                        tabindex="0">
+                <button id="clear-btn"
+                    class="whitespace-nowrap px-6 py-3 bg-gray-500 text-white rounded-lg text-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-300"
+                    onclick="clearSearch()" tabindex="0">
                     复位
                 </button>
             </div>
         </div>
 
-
         <!-- 分类标签 -->
         <div class="flex flex-wrap gap-2 mb-4" id="category-buttons"></div>
-
 
         <!-- 软件宫格 -->
         <div id="software-container" class="overflow-auto h-[70vh]">
@@ -81,14 +197,12 @@
         </div>
     </div>
 
-
     <script>
         let softwareData = [];
         let currentCategory = 'all';
         let currentCode = '';
         let focusableElements = [];
         let currentFocusIndex = 0;
-
 
         // 初始化
         window.addEventListener('DOMContentLoaded', () => {
@@ -103,24 +217,23 @@
             }, 50);
         });
 
-
         // 数据加载
         async function fetchData(code) {
             try {
                 const url = `https://hfr1107.top/api/box/yc.php?code=${code || '11aa'}`;
-                console.log('Fetching data from:', url); // 打印请求的 URL
+                console.log('Fetching data from:', url);
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                
+
                 softwareData = data.groupApkList || [];
                 initCategories(data.tagNameList || []);
                 // 搜索完成后默认显示全部标签数据
                 currentCategory = 'all';
                 renderSoftware();
-                
+
                 setTimeout(() => {
                     const firstGridItem = document.querySelector('.grid-item');
                     if (firstGridItem) {
@@ -129,11 +242,10 @@
                     }
                 }, 50);
             } catch (error) {
-                console.error('Fetch error:', error); // 打印详细的错误信息
+                console.error('Fetch error:', error);
                 showError(error.message);
             }
         }
-
 
         // 分类标签初始化
         function initCategories(tags) {
@@ -147,7 +259,6 @@
                 </button>
             `;
 
-
             tags.forEach(tag => {
                 const btn = document.createElement('button');
                 btn.className = 'px-4 py-2 rounded-lg bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300';
@@ -158,54 +269,60 @@
             });
         }
 
-
         // 分类筛选
         function filterCategory(category, button) {
             currentCategory = category;
             document.querySelectorAll('#category-buttons button').forEach(btn => {
                 btn.dataset.active = (btn === button).toString();
-                btn.className = btn === button 
-                    ? 'px-4 py-2 rounded-lg bg-blue-100 text-blue-800 border-2 border-blue-300 focus:ring-2 focus:ring-blue-300'
+                btn.className = btn === button
+                   ? 'px-4 py-2 rounded-lg bg-blue-100 text-blue-800 border-2 border-blue-300 focus:ring-2 focus:ring-blue-300'
                     : 'px-4 py-2 rounded-lg bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300';
             });
             renderSoftware();
             button.focus();
         }
 
-
         // 渲染宫格
         function renderSoftware() {
             const grid = document.getElementById('software-grid');
             grid.innerHTML = '';
 
-
-            softwareData.filter(item => 
-                currentCategory === 'all' || 
+            softwareData.filter(item =>
+                currentCategory === 'all' ||
                 item.tagList.some(tag => tag.tagName === currentCategory)
             ).forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'grid-item bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-500';
                 card.tabIndex = 0;
-                card.dataset.packageName = item.meta.packageName; // 存储包名
-                card.onclick = () => window.open(item.pluginUrl, '_blank'); // 整个宫格点击触发下载
+                card.dataset.packageName = item.meta.packageName;
+                card.dataset.downloadUrl = item.pluginUrl;
+                card.onclick = () => window.open(item.pluginUrl, '_blank');
+                card.onkeydown = function (e) {
+                    if (e.key === 'Enter') {
+                        window.open(item.pluginUrl, '_blank');
+                    }
+                };
+                // 假设数据中有 updateDate 字段，如果没有需要根据实际情况修改
+                const packageName = item.meta.packageName || '未知';
+                const createTime = item.tagList.length > 0? item.tagList[0].createTime.split(' ')[0] : '未知';
                 card.innerHTML = `
                     <div class="h-full flex flex-col">
                         <img src="${item.meta.iconUrl}" 
-                             class="w-20 h-20 mx-auto mb-2 object-contain">
+                             class="mx-auto mb-2 object-contain">
                         <div class="flex-1">
                             <h3 class="font-semibold text-center truncate-2">${item.meta.label}</h3>
                             <p class="text-sm text-gray-500 text-center truncate mt-1" id="package-name-${item.meta.packageName}" style="display: none;">${item.meta.packageName}</p>
                             <p class="text-xs text-gray-400 text-center mt-2">v${item.meta.versionName}</p>
+                            <p class="text-xs text-gray-400 text-center mt-2">${packageName}</p>
+                            <p class="text-xs text-gray-400 text-center mt-2">${createTime}</p>
                         </div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
 
-
             updateFocusables();
         }
-
 
         // 键盘导航
         function initKeyboardNav() {
@@ -216,21 +333,18 @@
                 const isClearBtn = active.id === 'clear-btn';
                 const isCategoryBtn = active.parentElement?.id === 'category-buttons';
                 const isGridItem = active.classList.contains('grid-item');
+                const isDropdownBtn = active.classList.contains('dropbtn');
 
-
-                // 阻止默认滚动行为
                 if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
                     e.preventDefault();
                 }
 
-
-                // 处理不同元素的导航逻辑
                 if (isSearchInput) handleSearchNav(e);
                 else if (isSearchBtn) handleSearchBtnNav(e);
                 else if (isClearBtn) handleClearBtnNav(e);
                 else if (isCategoryBtn) handleCategoryNav(e, active);
                 else if (isGridItem) handleGridNav(e, active);
-
+                else if (isDropdownBtn) handleDropdownNav(e, active);
 
                 if (e.key === 'Escape') {
                     const firstGridItem = document.querySelector('.grid-item');
@@ -242,11 +356,13 @@
             });
         }
 
-
         function handleSearchNav(e) {
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowDown':
                     focusFirstCategory();
+                    break;
+                case 'ArrowLeft':
+                    document.querySelector('.dropbtn').focus();
                     break;
                 case 'ArrowRight':
                     document.getElementById('search-btn').focus();
@@ -254,9 +370,8 @@
             }
         }
 
-
         function handleSearchBtnNav(e) {
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowUp':
                     document.getElementById('search-code').focus();
                     break;
@@ -272,9 +387,8 @@
             }
         }
 
-
         function handleClearBtnNav(e) {
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowUp':
                     document.getElementById('search-code').focus();
                     break;
@@ -287,13 +401,11 @@
             }
         }
 
-
         function handleCategoryNav(e, active) {
             const buttons = Array.from(document.querySelectorAll('#category-buttons button'));
             const index = buttons.indexOf(active);
 
-
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowUp':
                     document.getElementById('clear-btn').focus();
                     break;
@@ -312,14 +424,11 @@
             }
         }
 
-
         function handleGridNav(e, active) {
             const items = Array.from(document.querySelectorAll('.grid-item'));
             const index = items.indexOf(active);
             const cols = getComputedGridColumns();
 
-
-            // 焦点聚焦时显示包名，失去焦点时隐藏包名
             const packageNameElement = active.querySelector('p[id^="package-name-"]');
             if (e.type === 'focus') {
                 packageNameElement.style.display = 'block';
@@ -327,8 +436,7 @@
                 packageNameElement.style.display = 'none';
             }
 
-
-            switch(e.key) {
+            switch (e.key) {
                 case 'ArrowUp':
                     if (index < cols) focusFirstCategory();
                     else items[index - cols].focus();
@@ -348,43 +456,47 @@
             }
         }
 
+        function handleDropdownNav(e, active) {
+            switch (e.key) {
+                case 'ArrowDown':
+                    const firstDropdownItem = document.querySelector('.dropdown-content a');
+                    if (firstDropdownItem) firstDropdownItem.focus();
+                    break;
+                case 'ArrowRight':
+                    document.getElementById('search-code').focus();
+                    break;
+            }
+        }
 
-        // 辅助函数
         function getComputedGridColumns() {
             const grid = document.getElementById('software-grid');
             return parseInt(getComputedStyle(grid).gridTemplateColumns.split(' ').length);
         }
-
 
         function focusFirstCategory() {
             const btn = document.querySelector('#category-buttons button');
             if (btn) btn.focus();
         }
 
-
         function updateFocusables() {
-            focusableElements = Array.from(document.querySelectorAll('button, input, .grid-item'));
+            focusableElements = Array.from(document.querySelectorAll('button, input, .grid-item, .dropdown-content a'));
         }
-
 
         // 搜索功能
         function handleSearch() {
             const code = document.getElementById('search-code').value.replace(/[^a-zA-Z0-9]/g, '');
-            if (code && code !== currentCode) {
+            if (code && code!== currentCode) {
                 currentCode = code;
                 fetchData(currentCode);
             }
-            // 复位文本框
             document.getElementById('search-code').value = '';
         }
-
 
         function clearSearch() {
             document.getElementById('search-code').value = '';
             currentCode = '';
             fetchData(currentCode);
         }
-
 
         function showError(msg) {
             document.getElementById('software-grid').innerHTML = `
@@ -393,7 +505,12 @@
                 </div>
             `;
         }
+
+        function selectCode(code) {
+            document.getElementById('search-code').value = code;
+            handleSearch();
+        }
     </script>
 </body>
-</html>
-    
+
+</html>    
