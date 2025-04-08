@@ -1,153 +1,399 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <title>应用市场</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>野草助手By路尧</title>
     <style>
-      .focused {
-            outline: 2px solid blue;
+        /* 自定义样式 */
+       .grid-item {
+            min-width: clamp(120px, 15vw, 160px); /* 使用 clamp 函数实现响应式最小宽度 */
+            min-height: clamp(120px, 15vw, 160px); /* 使用 clamp 函数实现响应式最小高度 */
+            aspect-ratio: 1 / 1; /* 确保为正方形 */
+            width: 100%; /* 让宽度自适应父容器 */
+            box-sizing: border-box; /* 确保内边距和边框不影响尺寸 */
+        }
+       .truncate-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        #search-container {
+            scroll-margin-top: 2rem;
+        }
+        /* 进一步优化焦点样式 */
+        button:focus,
+        input:focus,
+       .grid-item:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            outline: none;
+        }
+        /* 标签栏样式调整 */
+        #category-buttons button {
+            font-size: 1.25rem; /* 加大两号 */
+            font-weight: bold; /* 加粗 */
+            padding: 0.75rem 1.5rem; /* 同比例放大按钮 */
+        }
+        /* 版本号样式调整 */
+       .grid-item p.text-xs {
+            line-height: 1.2; /* 缩小行间距 */
+            font-weight: bold; /* 文字加粗 */
         }
     </style>
 </head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <!-- 搜索栏 -->
+        <div id="search-container" class="mb-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 items-center">
+            <input type="text" 
+                   id="search-code"
+                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-lg transition-all"
+                   placeholder="输入野草口令（如11AA、5DF5、8980、2004、DA4F，D381、AAD9、E9D1、BB1D)"
+                   tabindex="0">
+            
+            <div class="flex gap-2">
+                <button id="search-btn" 
+                        class="whitespace-nowrap px-6 py-3 bg-blue-600 text-white rounded-lg text-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-300"
+                        onclick="handleSearch()"
+                        tabindex="0">
+                    立即搜索
+                </button>
+                <button id="clear-btn" 
+                        class="whitespace-nowrap px-6 py-3 bg-gray-500 text-white rounded-lg text-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-300"
+                        onclick="clearSearch()"
+                        tabindex="0">
+                    复位
+                </button>
+            </div>
+        </div>
 
-<body class="bg-gray-100 font-sans">
-    <div class="container mx-auto p-8">
-        <h1 class="text-3xl font-bold text-center mb-4">应用市场</h1>
-        <div class="flex justify-center space-x-4 mb-6">
-            <input type="text" id="search-code" class="border border-gray-300 rounded-md px-4 py-2" placeholder="输入 code">
-            <button id="search-button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="searchData()">搜索</button>
-        </div>
-        <div class="flex justify-center space-x-4 mb-6" id="category-buttons">
-            <!-- 分类按钮将通过 AJAX 动态插入 -->
-        </div>
-        <div id="software-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-6">
-            <!-- 软件项将通过 AJAX 动态插入 -->
-        </div>
-        <div class="flex justify-center space-x-4">
-            <button id="prev-page" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="prevPage()" disabled>上一页</button>
-            <button id="next-page" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onclick="nextPage()">下一页</button>
+
+        <!-- 分类标签 -->
+        <div class="flex flex-wrap gap-2 mb-4" id="category-buttons"></div>
+
+
+        <!-- 软件宫格 -->
+        <div id="software-container" class="overflow-auto h-[70vh]">
+            <div id="software-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
         </div>
     </div>
 
+
     <script>
-        let currentPage = 1;
+        let softwareData = [];
         let currentCategory = 'all';
-        let focusedIndex = 0;
-        let code = '11aa';
+        let currentCode = '';
+        let focusableElements = [];
+        let currentFocusIndex = 0;
 
-        function fetchData() {
-            const xhr = new XMLHttpRequest();
-            const url = `software_list.php?code=${code}&page=${currentPage}&category=${currentCategory}`;
-            xhr.open('GET', url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.error) {
-                        console.error(response.error);
-                        return;
-                    }
-                    document.getElementById('category-buttons').innerHTML = response.categoryButtonsHtml;
-                    document.getElementById('software-grid').innerHTML = response.softwareHtml;
-                    currentPage = response.currentPage;
-                    const prevButton = document.getElementById('prev-page');
-                    const nextButton = document.getElementById('next-page');
-                    prevButton.disabled = currentPage === 1;
-                    nextButton.disabled = response.endIndex >= response.totalItems;
-                    setFocus();
+
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchData(currentCode);
+            initKeyboardNav();
+            setTimeout(() => {
+                const firstGridItem = document.querySelector('.grid-item');
+                if (firstGridItem) {
+                    firstGridItem.focus();
+                    firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
-            };
-            xhr.send();
-        }
+            }, 50);
+        });
 
-        function searchData() {
-            const inputCode = document.getElementById('search-code').value;
-            if (inputCode) {
-                code = inputCode;
-                currentPage = 1;
+
+        // 数据加载
+        async function fetchData(code) {
+            try {
+                const url = `https://hfr1107.top/api/box/yc.php?code=${code || '11aa'}`;
+                console.log('Fetching data from:', url); // 打印请求的 URL
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                softwareData = data.groupApkList || [];
+                initCategories(data.tagNameList || []);
+                // 搜索完成后默认显示全部标签数据
                 currentCategory = 'all';
-                fetchData();
-            }
-        }
-
-        function filterSoftware(category) {
-            currentCategory = category;
-            currentPage = 1;
-            fetchData();
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                fetchData();
-            }
-        }
-
-        function nextPage() {
-            const xhr = new XMLHttpRequest();
-            const url = `https://hfr1107.top/api/box/software_list.php?code=${code}&page=${currentPage + 1}&category=${currentCategory}`;
-            xhr.open('GET', url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.endIndex < response.totalItems) {
-                        currentPage++;
-                        document.getElementById('category-buttons').innerHTML = response.categoryButtonsHtml;
-                        document.getElementById('software-grid').innerHTML = response.softwareHtml;
-                        const prevButton = document.getElementById('prev-page');
-                        const nextButton = document.getElementById('next-page');
-                        prevButton.disabled = currentPage === 1;
-                        nextButton.disabled = response.endIndex >= response.totalItems;
-                        setFocus();
+                renderSoftware();
+                
+                setTimeout(() => {
+                    const firstGridItem = document.querySelector('.grid-item');
+                    if (firstGridItem) {
+                        firstGridItem.focus();
+                        firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
-                }
-            };
-            xhr.send();
+                }, 50);
+            } catch (error) {
+                console.error('Fetch error:', error); // 打印详细的错误信息
+                showError(error.message);
+            }
         }
 
-        function setFocus() {
-            const softwareItems = document.querySelectorAll('.software-item');
-            softwareItems.forEach((item, index) => {
-                item.classList.remove('focused');
-                if (index === focusedIndex) {
-                    item.classList.add('focused');
+
+        // 分类标签初始化
+        function initCategories(tags) {
+            const container = document.getElementById('category-buttons');
+            container.innerHTML = `
+                <button class="px-4 py-2 rounded-lg bg-blue-100 text-blue-800 border-2 border-blue-300 focus:ring-2 focus:ring-blue-300"
+                        onclick="filterCategory('all', this)"
+                        data-active="true"
+                        tabindex="0">
+                    全部
+                </button>
+            `;
+
+
+            tags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'px-4 py-2 rounded-lg bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300';
+                btn.textContent = tag;
+                btn.tabIndex = 0;
+                btn.onclick = (e) => filterCategory(tag, e.currentTarget);
+                container.appendChild(btn);
+            });
+        }
+
+
+        // 分类筛选
+        function filterCategory(category, button) {
+            currentCategory = category;
+            document.querySelectorAll('#category-buttons button').forEach(btn => {
+                btn.dataset.active = (btn === button).toString();
+                btn.className = btn === button 
+                    ? 'px-4 py-2 rounded-lg bg-blue-100 text-blue-800 border-2 border-blue-300 focus:ring-2 focus:ring-blue-300'
+                    : 'px-4 py-2 rounded-lg bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300';
+            });
+            renderSoftware();
+            button.focus();
+        }
+
+
+        // 渲染宫格
+        function renderSoftware() {
+            const grid = document.getElementById('software-grid');
+            grid.innerHTML = '';
+
+
+            softwareData.filter(item => 
+                currentCategory === 'all' || 
+                item.tagList.some(tag => tag.tagName === currentCategory)
+            ).forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'grid-item bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-500';
+                card.tabIndex = 0;
+                card.dataset.packageName = item.meta.packageName; // 存储包名
+                card.onclick = () => window.open(item.pluginUrl, '_blank'); // 整个宫格点击触发下载
+                card.innerHTML = `
+                    <div class="h-full flex flex-col">
+                        <img src="${item.meta.iconUrl}" 
+                             class="w-20 h-20 mx-auto mb-2 object-contain">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-center truncate-2">${item.meta.label}</h3>
+                            <p class="text-sm text-gray-500 text-center truncate mt-1" id="package-name-${item.meta.packageName}" style="display: none;">${item.meta.packageName}</p>
+                            <p class="text-xs text-gray-400 text-center mt-2">v${item.meta.versionName}</p>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+
+            updateFocusables();
+        }
+
+
+        // 键盘导航
+        function initKeyboardNav() {
+            document.addEventListener('keydown', (e) => {
+                const active = document.activeElement;
+                const isSearchInput = active.id === 'search-code';
+                const isSearchBtn = active.id === 'search-btn';
+                const isClearBtn = active.id === 'clear-btn';
+                const isCategoryBtn = active.parentElement?.id === 'category-buttons';
+                const isGridItem = active.classList.contains('grid-item');
+
+
+                // 阻止默认滚动行为
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
+                    e.preventDefault();
+                }
+
+
+                // 处理不同元素的导航逻辑
+                if (isSearchInput) handleSearchNav(e);
+                else if (isSearchBtn) handleSearchBtnNav(e);
+                else if (isClearBtn) handleClearBtnNav(e);
+                else if (isCategoryBtn) handleCategoryNav(e, active);
+                else if (isGridItem) handleGridNav(e, active);
+
+
+                if (e.key === 'Escape') {
+                    const firstGridItem = document.querySelector('.grid-item');
+                    if (firstGridItem) {
+                        firstGridItem.focus();
+                        firstGridItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
                 }
             });
         }
 
-        function handleKeyDown(event) {
-            const softwareItems = document.querySelectorAll('.software-item');
-            const totalItems = softwareItems.length;
-            const cols = 6;
 
-            switch (event.key) {
-                case 'ArrowLeft':
-                    if (focusedIndex % cols > 0) {
-                        focusedIndex--;
-                    }
+        function handleSearchNav(e) {
+            switch(e.key) {
+                case 'ArrowDown':
+                    focusFirstCategory();
                     break;
                 case 'ArrowRight':
-                    if (focusedIndex % cols < cols - 1 && focusedIndex < totalItems - 1) {
-                        focusedIndex++;
-                    }
-                    break;
-                case 'Enter':
-                    const downloadLink = softwareItems[focusedIndex].querySelector('a');
-                    if (downloadLink) {
-                        downloadLink.click();
-                    }
+                    document.getElementById('search-btn').focus();
                     break;
             }
-
-            setFocus();
         }
 
-        document.addEventListener('keydown', handleKeyDown);
-        fetchData();
+
+        function handleSearchBtnNav(e) {
+            switch(e.key) {
+                case 'ArrowUp':
+                    document.getElementById('search-code').focus();
+                    break;
+                case 'ArrowLeft':
+                    document.getElementById('search-code').focus();
+                    break;
+                case 'ArrowRight':
+                    document.getElementById('clear-btn').focus();
+                    break;
+                case 'ArrowDown':
+                    focusFirstCategory();
+                    break;
+            }
+        }
+
+
+        function handleClearBtnNav(e) {
+            switch(e.key) {
+                case 'ArrowUp':
+                    document.getElementById('search-code').focus();
+                    break;
+                case 'ArrowLeft':
+                    document.getElementById('search-btn').focus();
+                    break;
+                case 'ArrowDown':
+                    focusFirstCategory();
+                    break;
+            }
+        }
+
+
+        function handleCategoryNav(e, active) {
+            const buttons = Array.from(document.querySelectorAll('#category-buttons button'));
+            const index = buttons.indexOf(active);
+
+
+            switch(e.key) {
+                case 'ArrowUp':
+                    document.getElementById('clear-btn').focus();
+                    break;
+                case 'ArrowLeft':
+                    if (index > 0) buttons[index - 1].focus();
+                    else buttons[buttons.length - 1].focus();
+                    break;
+                case 'ArrowRight':
+                    if (index < buttons.length - 1) buttons[index + 1].focus();
+                    else buttons[0].focus();
+                    break;
+                case 'ArrowDown':
+                    const firstGridItem = document.querySelector('.grid-item');
+                    if (firstGridItem) firstGridItem.focus();
+                    break;
+            }
+        }
+
+
+        function handleGridNav(e, active) {
+            const items = Array.from(document.querySelectorAll('.grid-item'));
+            const index = items.indexOf(active);
+            const cols = getComputedGridColumns();
+
+
+            // 焦点聚焦时显示包名，失去焦点时隐藏包名
+            const packageNameElement = active.querySelector('p[id^="package-name-"]');
+            if (e.type === 'focus') {
+                packageNameElement.style.display = 'block';
+            } else if (e.type === 'blur') {
+                packageNameElement.style.display = 'none';
+            }
+
+
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (index < cols) focusFirstCategory();
+                    else items[index - cols].focus();
+                    break;
+                case 'ArrowDown':
+                    if (index + cols < items.length) items[index + cols].focus();
+                    else items[index % cols].focus();
+                    break;
+                case 'ArrowLeft':
+                    if (index % cols === 0) items[index + cols - 1].focus();
+                    else items[index - 1].focus();
+                    break;
+                case 'ArrowRight':
+                    if ((index + 1) % cols === 0) items[index - cols + 1].focus();
+                    else items[index + 1].focus();
+                    break;
+            }
+        }
+
+
+        // 辅助函数
+        function getComputedGridColumns() {
+            const grid = document.getElementById('software-grid');
+            return parseInt(getComputedStyle(grid).gridTemplateColumns.split(' ').length);
+        }
+
+
+        function focusFirstCategory() {
+            const btn = document.querySelector('#category-buttons button');
+            if (btn) btn.focus();
+        }
+
+
+        function updateFocusables() {
+            focusableElements = Array.from(document.querySelectorAll('button, input, .grid-item'));
+        }
+
+
+        // 搜索功能
+        function handleSearch() {
+            const code = document.getElementById('search-code').value.replace(/[^a-zA-Z0-9]/g, '');
+            if (code && code !== currentCode) {
+                currentCode = code;
+                fetchData(currentCode);
+            }
+            // 复位文本框
+            document.getElementById('search-code').value = '';
+        }
+
+
+        function clearSearch() {
+            document.getElementById('search-code').value = '';
+            currentCode = '';
+            fetchData(currentCode);
+        }
+
+
+        function showError(msg) {
+            document.getElementById('software-grid').innerHTML = `
+                <div class="col-span-full text-center py-8 text-red-500">
+                    ⚠️ ${msg}
+                </div>
+            `;
+        }
     </script>
 </body>
-
-</html>    
+</html>
+    
