@@ -1,5 +1,5 @@
 {
-    "versionCode": "31",
+    "versionCode": "4.0",
     "updateMessage": "这是一个重要的更新，包含了许多新功能和修复。",
     "url": "http://47.98.168.99:99/zhuanshu/gengxin.apk"
 }    
