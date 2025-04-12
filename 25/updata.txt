@@ -2,4 +2,8 @@
     "updateMessage": "这是一个重要的更新，包含了许多新功能和修复。",
     "url": "https:\/\/py.nxog.eu.org\/https:\/\/raw.githubusercontent.com\/hfr1107\/app\/main\/25\/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87\/%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.apk",
     "versionCode": 31
+    "version": "3.1",
+    "release_notes": "本次更新修复了一些已知的小问题，并且优化了性能。",
+    "download_url": "https:\/\/py.nxog.eu.org\/https:\/\/raw.githubusercontent.com\/hfr1107\/app\/main\/25\/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87\/%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.apk",
+    "force_update": false
 }    
