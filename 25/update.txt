@@ -1,5 +1,5 @@
 {
-    "versionCode": "3.1",
+    "versionCode": "31",
     "updateMessage": "这是一个重要的更新，包含了许多新功能和修复。",
     "url": "http://154.8.177.90:8/res/config.txt"
 }    
