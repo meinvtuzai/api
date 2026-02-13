@@ -12,7 +12,7 @@
     "create_time": "2026-02-13",
     "banben": "4.1.7",
     "desc1": "装机必备",
-    "id": "30",
+    "id": "32",
     "appid": "1"
   },
   "2": {
@@ -28,7 +28,7 @@
     "create_time": "2026-02-13",
     "banben": "3.0",
     "desc1": "装机必备",
-    "id": "29",
+    "id": "31",
     "appid": "2"
   },
   "3": {
@@ -44,7 +44,7 @@
     "create_time": "2026-02-13",
     "banben": "7.3.2",
     "desc1": "装机必备",
-    "id": "28",
+    "id": "30",
     "appid": "3"
   },
   "4": {
@@ -60,26 +60,42 @@
     "create_time": "2026-02-13",
     "banben": "1.5.2",
     "desc1": "装机必备",
-    "id": "27",
+    "id": "29",
     "appid": "4"
   },
   "5": {
     "title": "蜂蜜直播",
     "apptitle": "蜂蜜直播",
-    "packname": null,
-    "baoming": null,
+    "packname": "com.fmzbtv.d.tv",
+    "baoming": "com.fmzbtv.d.tv",
     "downurl": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E8%9C%82%E8%9C%9C%E7%9B%B4%E6%92%AD.apk",
     "url": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E8%9C%82%E8%9C%9C%E7%9B%B4%E6%92%AD.apk",
     "logo": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E8%9C%82%E8%9C%9C%E7%9B%B4%E6%92%AD.png",
     "appico": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E8%9C%82%E8%9C%9C%E7%9B%B4%E6%92%AD.png",
-    "daxiao": "0.0M",
+    "daxiao": "33.2M",
     "create_time": "2026-02-13",
-    "banben": "未知版本",
+    "banben": "4.0.0",
     "desc1": "装机必备",
-    "id": "26",
+    "id": "28",
     "appid": "5"
   },
   "6": {
+    "title": "应用管家1.8.3",
+    "apptitle": "应用管家1.8.3",
+    "packname": "com.yunpan.appmanage",
+    "baoming": "com.yunpan.appmanage",
+    "downurl": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E5%BA%94%E7%94%A8%E7%AE%A1%E5%AE%B61.8.3.apk",
+    "url": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E5%BA%94%E7%94%A8%E7%AE%A1%E5%AE%B61.8.3.apk",
+    "logo": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E5%BA%94%E7%94%A8%E7%AE%A1%E5%AE%B61.8.3.png",
+    "appico": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E5%BA%94%E7%94%A8%E7%AE%A1%E5%AE%B61.8.3.png",
+    "daxiao": "15.5M",
+    "create_time": "2026-02-13",
+    "banben": "1.8.3",
+    "desc1": "装机必备",
+    "id": "27",
+    "appid": "6"
+  },
+  "7": {
     "title": "路尧管家_极简版",
     "apptitle": "路尧管家_极简版",
     "packname": "com.luyao.appmanage",
@@ -92,10 +108,10 @@
     "create_time": "2026-02-13",
     "banben": "1.5.2",
     "desc1": "装机必备",
-    "id": "25",
-    "appid": "6"
+    "id": "26",
+    "appid": "7"
   },
-  "7": {
+  "8": {
     "title": "路尧市场",
     "apptitle": "路尧市场",
     "packname": "com.xtest",
@@ -108,10 +124,10 @@
     "create_time": "2026-02-13",
     "banben": "1.0",
     "desc1": "装机必备",
-    "id": "24",
-    "appid": "7"
+    "id": "25",
+    "appid": "8"
   },
-  "8": {
+  "9": {
     "title": "路尧影仓",
     "apptitle": "路尧影仓",
     "packname": "com.mygithub2.tvbox2.osdY",
@@ -124,26 +140,26 @@
     "create_time": "2026-02-13",
     "banben": "5.0.48.2",
     "desc1": "装机必备",
-    "id": "23",
-    "appid": "8"
+    "id": "24",
+    "appid": "9"
   },
-  "9": {
+  "10": {
     "title": "爱路尧TV",
     "apptitle": "爱路尧TV",
-    "packname": null,
-    "baoming": null,
+    "packname": "com.player.lu1py",
+    "baoming": "com.player.lu1py",
     "downurl": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E7%88%B1%E8%B7%AF%E5%B0%A7TV.apk",
     "url": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E7%88%B1%E8%B7%AF%E5%B0%A7TV.apk",
     "logo": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E7%88%B1%E8%B7%AF%E5%B0%A7TV.png",
     "appico": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E8%A3%85%E6%9C%BA%E5%BF%85%E5%A4%87/%E7%88%B1%E8%B7%AF%E5%B0%A7TV.png",
-    "daxiao": "0.0M",
+    "daxiao": "39.9M",
     "create_time": "2026-02-13",
-    "banben": "未知版本",
+    "banben": "32py_1.7.7_20260111_1227",
     "desc1": "装机必备",
-    "id": "22",
-    "appid": "9"
+    "id": "23",
+    "appid": "10"
   },
-  "10": {
+  "11": {
     "title": "蜗牛影视",
     "apptitle": "蜗牛影视",
     "packname": "com.sytvpro.tv",
@@ -156,10 +172,26 @@
     "create_time": "2026-02-13",
     "banben": "6.0.4.1",
     "desc1": "影视应用",
-    "id": "21",
-    "appid": "10"
+    "id": "22",
+    "appid": "11"
   },
-  "11": {
+  "12": {
+    "title": "路尧影仓5.0.27",
+    "apptitle": "路尧影仓5.0.27",
+    "packname": "com.mygithub2.tvbox2.osdY",
+    "baoming": "com.mygithub2.tvbox2.osdY",
+    "downurl": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E5%BD%B1%E8%A7%86%E5%BA%94%E7%94%A8/%E8%B7%AF%E5%B0%A7%E5%BD%B1%E4%BB%935.0.27.apk",
+    "url": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E5%BD%B1%E8%A7%86%E5%BA%94%E7%94%A8/%E8%B7%AF%E5%B0%A7%E5%BD%B1%E4%BB%935.0.27.apk",
+    "logo": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E5%BD%B1%E8%A7%86%E5%BA%94%E7%94%A8/%E8%B7%AF%E5%B0%A7%E5%BD%B1%E4%BB%935.0.27.png",
+    "appico": "https://gb.hfr1107.top/https://raw.githubusercontent.com/hfr1107/app/main/25/%E5%BD%B1%E8%A7%86%E5%BA%94%E7%94%A8/%E8%B7%AF%E5%B0%A7%E5%BD%B1%E4%BB%935.0.27.png",
+    "daxiao": "32.5M",
+    "create_time": "2026-02-13",
+    "banben": "5.0.27",
+    "desc1": "影视应用",
+    "id": "21",
+    "appid": "12"
+  },
+  "13": {
     "title": "乐享4K",
     "apptitle": "乐享4K",
     "packname": "com.lexiang4k.tv",
@@ -173,9 +205,9 @@
     "banben": "2025.02.28",
     "desc1": "影视应用",
     "id": "20",
-    "appid": "11"
+    "appid": "13"
   },
-  "12": {
+  "14": {
     "title": "知云4K",
     "apptitle": "知云4K",
     "packname": "com.zhiyun4k.android.tv",
@@ -189,9 +221,9 @@
     "banben": "2.3.5",
     "desc1": "影视应用",
     "id": "19",
-    "appid": "12"
+    "appid": "14"
   },
-  "13": {
+  "15": {
     "title": "影优V",
     "apptitle": "影优V",
     "packname": "com.sytvpro.tv",
@@ -205,9 +237,9 @@
     "banben": "5.7.99",
     "desc1": "影视应用",
     "id": "18",
-    "appid": "13"
+    "appid": "15"
   },
-  "14": {
+  "16": {
     "title": "小鲍影院",
     "apptitle": "小鲍影院",
     "packname": "xiaobao11.centent.pipl",
@@ -221,9 +253,9 @@
     "banben": "8.6",
     "desc1": "影视应用",
     "id": "17",
-    "appid": "14"
+    "appid": "16"
   },
-  "15": {
+  "17": {
     "title": "飯太硬",
     "apptitle": "飯太硬",
     "packname": "com.fanty.anoid.tw",
@@ -237,9 +269,9 @@
     "banben": "9.9.9",
     "desc1": "影视应用",
     "id": "16",
-    "appid": "15"
+    "appid": "17"
   },
-  "16": {
+  "18": {
     "title": "瓜子影视",
     "apptitle": "瓜子影视",
     "packname": "com.guaziys.toq",
@@ -253,9 +285,9 @@
     "banben": "2.4.4",
     "desc1": "影视应用",
     "id": "15",
-    "appid": "16"
+    "appid": "18"
   },
-  "17": {
+  "19": {
     "title": "爱家简约版",
     "apptitle": "爱家简约版",
     "packname": "com.ijiays.vip",
@@ -269,9 +301,9 @@
     "banben": "8.1",
     "desc1": "影视应用",
     "id": "14",
-    "appid": "17"
+    "appid": "19"
   },
-  "18": {
+  "20": {
     "title": "TVBox",
     "apptitle": "TVBox",
     "packname": "q215613905.tvbox.osc",
@@ -285,9 +317,9 @@
     "banben": "2025.0216.0113",
     "desc1": "影视应用",
     "id": "13",
-    "appid": "18"
+    "appid": "20"
   },
-  "19": {
+  "21": {
     "title": "影视仓TV3",
     "apptitle": "影视仓TV3",
     "packname": "ysc.tv3",
@@ -301,9 +333,9 @@
     "banben": "3.0.35_202308",
     "desc1": "影视应用",
     "id": "12",
-    "appid": "19"
+    "appid": "21"
   },
-  "20": {
+  "22": {
     "title": "TAO影视",
     "apptitle": "TAO影视",
     "packname": "com.taoBox.cww",
@@ -317,9 +349,9 @@
     "banben": "7.0.0",
     "desc1": "影视应用",
     "id": "11",
-    "appid": "20"
+    "appid": "22"
   },
-  "21": {
+  "23": {
     "title": "小薇直播(纯净版)",
     "apptitle": "小薇直播(纯净版)",
     "packname": "com.live.zd",
@@ -333,9 +365,9 @@
     "banben": "2.7.0.1",
     "desc1": "直播应用",
     "id": "10",
-    "appid": "21"
+    "appid": "23"
   },
-  "22": {
+  "24": {
     "title": "G澳TTV",
     "apptitle": "G澳TTV",
     "packname": "com.yxys.live",
@@ -349,9 +381,9 @@
     "banben": "1.4.0",
     "desc1": "直播应用",
     "id": "9",
-    "appid": "22"
+    "appid": "24"
   },
-  "23": {
+  "25": {
     "title": "凤凰TV5.0",
     "apptitle": "凤凰TV5.0",
     "packname": "tv.fenghuang.iptv.y20250308",
@@ -365,9 +397,9 @@
     "banben": "5.0",
     "desc1": "直播应用",
     "id": "8",
-    "appid": "23"
+    "appid": "25"
   },
-  "24": {
+  "26": {
     "title": "高清电视",
     "apptitle": "高清电视",
     "packname": "com.jerry.livehd",
@@ -381,9 +413,9 @@
     "banben": "2.96",
     "desc1": "直播应用",
     "id": "7",
-    "appid": "24"
+    "appid": "26"
   },
-  "25": {
+  "27": {
     "title": "电视直播Pro",
     "apptitle": "电视直播Pro",
     "packname": "com.jerry.live.pro",
@@ -397,9 +429,9 @@
     "banben": "2.6.15",
     "desc1": "直播应用",
     "id": "6",
-    "appid": "25"
+    "appid": "27"
   },
-  "26": {
+  "28": {
     "title": "HeTool",
     "apptitle": "HeTool",
     "packname": "com.he.box",
@@ -413,9 +445,9 @@
     "banben": "1.8",
     "desc1": "系统应用",
     "id": "5",
-    "appid": "26"
+    "appid": "28"
   },
-  "27": {
+  "29": {
     "title": "野草助手",
     "apptitle": "野草助手",
     "packname": "fun.yecao.helper",
@@ -429,9 +461,9 @@
     "banben": "2.0.13",
     "desc1": "系统应用",
     "id": "4",
-    "appid": "27"
+    "appid": "29"
   },
-  "28": {
+  "30": {
     "title": "当贝桌面",
     "apptitle": "当贝桌面",
     "packname": "com.dangbei.tvlauncher",
@@ -445,9 +477,9 @@
     "banben": "3.2.5",
     "desc1": "系统应用",
     "id": "3",
-    "appid": "28"
+    "appid": "30"
   },
-  "29": {
+  "31": {
     "title": "智能K歌",
     "apptitle": "智能K歌",
     "packname": "com.huiaichang.sdm.desktop",
@@ -461,9 +493,9 @@
     "banben": "2.16.58.2411111420",
     "desc1": "其他软件",
     "id": "2",
-    "appid": "29"
+    "appid": "31"
   },
-  "30": {
+  "32": {
     "title": "短视频影视少儿仓",
     "apptitle": "短视频影视少儿仓",
     "packname": "com.wmdz.dsprtc6041",
@@ -477,7 +509,7 @@
     "banben": "6.0.4.1",
     "desc1": "其他软件",
     "id": "1",
-    "appid": "30"
+    "appid": "32"
   },
-  "allnum": "30"
+  "allnum": "32"
 }
